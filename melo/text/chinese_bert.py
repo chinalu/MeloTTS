@@ -19,11 +19,10 @@ def get_bert_feature(text, word2ph, device=None, model_id='hfl/chinese-roberta-w
     model = models[model_id]
     tokenizer = tokenizers[model_id]
 
-    if (
+    if device is None and (
         sys.platform == "darwin"
         and torch.backends.mps.is_available()
-        and device == "cpu"
-    ) and not device:
+    ):
         device = "mps"
     if not device:
         device = "cuda"
