@@ -23,7 +23,7 @@ def get_bert_feature(text, word2ph, device=None, model_id='hfl/chinese-roberta-w
         sys.platform == "darwin"
         and torch.backends.mps.is_available()
         and device == "cpu"
-    ):
+    ) and not device:
         device = "mps"
     if not device:
         device = "cuda"
