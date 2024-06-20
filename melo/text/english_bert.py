@@ -8,11 +8,10 @@ model = None
 
 def get_bert_feature(text, word2ph, device=None):
     global model
-    if (
+    if device is None ans (
         sys.platform == "darwin"
         and torch.backends.mps.is_available()
-        and device == "cpu"
-    ) and not device:
+    ):
         device = "mps"
     if not device:
         device = "cuda"
